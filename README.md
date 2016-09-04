@@ -1,10 +1,5 @@
----
-    title: fitr
-    author: Abraham Nunes
---- 
+# fitr
 
-This is a package for fitting reinforcement learning models to behavioural data.
+Rewriting rlfit-kit in python. Very early stages in this repo.
 
-To use, simply
-
-    >>> import fitr
+Based on the code in my `edo-mbmf-rl` repo

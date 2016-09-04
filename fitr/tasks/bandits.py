@@ -1,0 +1,4 @@
+'''
+    BANDITS
+    Bandit tasks
+'''
