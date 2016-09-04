@@ -17,7 +17,7 @@ setup(name='fitr',
         'Programming Language :: Python :: 3.5',
       ],
       license='MIT',
-      packages=['fitr'],
+      packages=['fitr', 'fitr.rlplots', 'fitr.tasks'],
       install_requires=[
         'numpy',
         'scipy',
