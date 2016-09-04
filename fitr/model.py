@@ -2,7 +2,6 @@
     Includes functions for building models
 '''
 
-
 def learningrate():
     return {1:'Learning Rate', 2:'unit'}
 
