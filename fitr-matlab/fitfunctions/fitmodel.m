@@ -137,7 +137,7 @@ function fit = fitmodel(results, model, fitoptions)
 
             return;
         else
-            disp(['LogLikelihood = ', num2str(sum(fit.logpost)), '; Iteration ', num2str(iter)]);
+            disp(['Log-Posterior Probability = ', num2str(sum(fit.logpost)), '; Iteration ', num2str(iter)]);
             fit.sumlogpost(iter+1) = sum(fit.logpost);
             oldfit     = fit;
             if iter < fitoptions.maxiters
