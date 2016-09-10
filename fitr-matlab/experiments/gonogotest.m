@@ -9,11 +9,11 @@ taskparams.ntrials  = 200;
 taskparams.nstates  = 2;
 taskparams.nactions = 2;
 taskparams.preward  = [0.7, 0.3; 0.3, 0.7];
-taskparams.rewards  = [1, 0; 0, 1];
+taskparams.rewards  = [1, -1; -1, 1];
 taskparams.ptrans   = [0.5; 0.5];
 
 % First generate some subjects
-subjects.N           = 20;
+subjects.N           = 50;
 subjects.params      = zeros(subjects.N, 2);
 subjects.params(:,1) = betarnd(1.1, 1.1, [subjects.N, 1]); %learning rate
 subjects.params(:,2) = gamrnd(5., 1., [subjects.N, 1]); %inverse temperature
@@ -23,7 +23,7 @@ subjects.params(:,2) = gamrnd(5., 1., [subjects.N, 1]); %inverse temperature
 results = gonogobandit.vanilla(subjects, taskparams);
 
 % Plot reward Prediction Errors
-rpes = abs(reshape([results.rpe], [subjects.N, taskparams.ntrials])');
+rpes = reshape([results.rpe], [subjects.N, taskparams.ntrials])';
 figure();
 g = pqts(rpes, [0, 100], 0.1, {'seriesmean'});
 xlabel('Trial');
@@ -133,41 +133,49 @@ subplot(4, 2, 1);
 g1 = pqline(1:subjects.N, arrayfun(ptu, subjects.params(:,1))); hold on;
 g2 = pqerrorbar(1:subjects.N, arrayfun(ptu, fit1.params(:,1)), fit1.errs(:,1)); hold off;
 pqtitle(g2, '\alpha');
-ylabel('Estimate');
+ylabel('Model 1');
+xlim([0, subjects.N+1]);
 
 subplot(4, 2, 2);
 g1 = pqline(1:subjects.N, arrayfun(ptp, subjects.params(:,2))); hold on;
 g2 = pqerrorbar(1:subjects.N, arrayfun(ptp, fit1.params(:,2)), fit1.errs(:,2)); hold off;
 pqtitle(g2, '\beta');
+xlim([0, subjects.N+1]);
 
 subplot(4, 2, 3);
 g1 = pqline(1:subjects.N, arrayfun(ptu, subjects.params(:,1))); hold on;
 g2 = pqerrorbar(1:subjects.N, arrayfun(ptu, fit2.params(:,1)), fit1.errs(:,1)); hold off;
-ylabel('Estimate');
+ylabel('Model 2');
+xlim([0, subjects.N+1]);
 
 subplot(4, 2, 4);
 g1 = pqline(1:subjects.N, arrayfun(ptp, subjects.params(:,2))); hold on;
 g2 = pqerrorbar(1:subjects.N, arrayfun(ptp, fit2.params(:,2)), fit1.errs(:,2)); hold off;
+xlim([0, subjects.N+1]);
 
 subplot(4, 2, 5);
 g1 = pqline(1:subjects.N, arrayfun(ptu, subjects.params(:,1))); hold on;
 g2 = pqerrorbar(1:subjects.N, arrayfun(ptu, fit3.params(:,1)), fit1.errs(:,1)); hold off;
-ylabel('Estimate');
+ylabel('Model 3');
+xlim([0, subjects.N+1]);
 
 subplot(4, 2, 6);
 g1 = pqline(1:subjects.N, arrayfun(ptp, subjects.params(:,2))); hold on;
 g2 = pqerrorbar(1:subjects.N, arrayfun(ptp, fit3.params(:,2)), fit1.errs(:,2)); hold off;
+xlim([0, subjects.N+1]);
 
 subplot(4, 2, 7);
 g1 = pqline(1:subjects.N, arrayfun(ptu, subjects.params(:,1))); hold on;
 g2 = pqerrorbar(1:subjects.N, arrayfun(ptu, fit4.params(:,1)), fit1.errs(:,1)); hold off;
-ylabel('Estimate');
-xlabel('Actual');
+ylabel('Model 4');
+xlabel('Subject');
+xlim([0, subjects.N+1]);
 
 subplot(4, 2, 8);
 g1 = pqline(1:subjects.N, arrayfun(ptp, subjects.params(:,2))); hold on;
 g2 = pqerrorbar(1:subjects.N, arrayfun(ptp, fit4.params(:,2)), fit1.errs(:,2)); hold off;
-xlabel('Actual');
+xlabel('Subject');
+xlim([0, subjects.N+1]);
 
 suptitle('Actual-Estimate Plots for Model Parameters');
 
