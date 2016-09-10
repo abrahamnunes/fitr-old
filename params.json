@@ -1,0 +1,6 @@
+{
+  "name": "fitr",
+  "tagline": "A tool for computational psychiatry",
+  "body": "The `fitr` package is a tool for fitting reinforcement learning models to behavioural data. \r\n\r\nIt is currently in early stages of development, and __only the Matlab package is functional at the moment__. \r\n\r\nI am working on the python and Julia packages, but improving the quality of the Matlab version is currently my main priority. \r\n\r\nFuture updates will include:\r\n\r\n* Documentation\r\n* Built-in gradient computations for common models\r\n* Expanding base of built-in tasks\r\n* Improving speed by fitting subjects in parallel\r\n* Exploring GPU-acceleration",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
