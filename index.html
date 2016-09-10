@@ -28,17 +28,18 @@
         </ul>
       </header>
       <section>
-        <p>The <code>fitr</code> package is a tool for fitting reinforcement learning models to behavioural data. </p>
+        <p>The <code>fitr</code> package is a tool for fitting reinforcement learning (RL) models to behavioural data. Currently, it's in early stages of development, and <strong>only the Matlab package is presently functional</strong>. </p>
 
-<p>It is currently in early stages of development, and <strong>only the Matlab package is functional at the moment</strong>. </p>
+<p>Much credit is owed to Samuel Gershman for his <a href="https://github.com/sjgershm/mfit"><code>mfit</code> package</a> from which the foundations of <code>fitr</code> are built, and from which I learned a great deal about fitting RL models. Currently, the <code>fitr</code> Bayesian Model Selection code uses many of the functions from <code>mfit</code>, but I am working on developing an independent implementation.</p>
 
 <p>I am working on the python and Julia packages, but improving the quality of the Matlab version is currently my main priority. </p>
 
-<p>Future updates will include:</p>
+<p>Future goals include:</p>
 
 <ul>
 <li>Documentation</li>
 <li>Built-in gradient computations for common models</li>
+<li>Bridging with tools such as SPM and VBA-Toolbox</li>
 <li>Expanding base of built-in tasks</li>
 <li>Improving speed by fitting subjects in parallel</li>
 <li>Exploring GPU-acceleration</li>
