@@ -45,6 +45,13 @@ fit = fitmodel(results, model, fitoptions);
 %
 %===============================================================================
 
+figure(); %Plot an example of the reward paths
+plot(1:size(results(1).rpaths, 1), results(1).rpaths, ...
+     'LineWidth', 1.5);
+title('Reward Paths');
+xlabel('Trial');
+ylabel('Reward');
+
 figure();
 subplot(1, 3, 1);
 p = pqscatter(subjects.params(:,1), fit.params(:,1), {'match'});
