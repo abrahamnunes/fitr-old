@@ -1,4 +1,4 @@
-# fitr
+# fitr [![DOI](https://zenodo.org/badge/67321875.svg)](https://zenodo.org/badge/latestdoi/67321875)
 
 A package for fitting reinforcement learning models to behavioural data.
 
