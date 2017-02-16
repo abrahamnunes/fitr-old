@@ -1,22 +1,34 @@
-'''
-    Useful functions used across fitr modules
-'''
+import numpy as np
 
 def softmax(x):
-    ''' Computes softmax probability '''
+    """
+        Computes softmax probability
+    """
     return np.exp(x)/np.sum(np.exp(x))
 
 def mnrandi(p):
-    ''' Returns index of max value from a multinomial sample '''
-    return np.argmax(rnd.multinomial(1, p))
+    """
+        Returns index of max value from a multinomial sample
+    """
+    return np.argmax(np.random.multinomial(1, p))
 
 def logsumexp(x):
-    '''
-        - Protects against numerical overflow/underflow.
+    """
+    Protects against numerical overflow/underflow.
 
-        Based on code from:
-            Samuel Gershman's `mfit` package (https://github.com/sjgershm/mfit)
-    '''
+    Parameters
+    ----------
+    x : ndarray(K)
+        Vector of K values
+
+    Returns
+    -------
+    float
+
+    References
+    ----------
+    Samuel Gershman's `mfit` package (https://github.com/sjgershm/mfit)
+    """
     ym = np.max(x)
     yc = x - ym
     y  = ym + np.log(np.sum(np.exp(yc)))
@@ -26,20 +38,26 @@ def logsumexp(x):
     return y
 
 def paramtransform(params, paramrng, transformtype):
-    '''
-        Transforms parameters between constrained and unconstrained spaces
+    """
+    Transforms parameters between constrained and unconstrained spaces.
 
-        `params`        = 1-D array of K parameter values
-        `paramrng`      = parameter range ('unit', 'pos', or 'unc')
-                            'unit' -> interval [0, 1]
-                            'pos'  -> interval [0, infinity)
-                            'unc'  -> interval (-infinity, +infinity)
-        `transformtype` = unconstrained -> constrained   ('uc')
-                          constrained   -> unconstrained ('cu')
+    Based on code from:
+        Akam et al. (2015). PLoS Computational Biology, 11(12), 1–25.
 
-        Based on code from:
-            Akam, T., Costa, R., & Dayan, P. (2015). Simple Plans or        Sophisticated Habits? State, Transition and Learning Interactions in the Two-Step Task. PLoS Computational Biology, 11(12), 1–25.
-    '''
+    Parameters
+    ----------
+    params : ndarray
+        1-D array of K parameter values, where K is the number of parameters
+    paramrng : ndarray
+        1-D array of strings specifying the domain of the K parameters. Acceptable values are 'unit' (interval [0, 1]), 'pos' (interval [0, +Inf]), or 'unc' (interval [-Inf, +Inf])
+    transformtype: str
+        Whether the transformation is from unconstrained to constrained space ('uc'), or from constrained to unconstrained space ('cu')
+
+    Returns
+    -------
+    ndarray
+        1-D array of the K transformed parameter values
+    """
     K = np.size(paramrng)
     for k in range(0, K):
         if transformtype == 'uc':
